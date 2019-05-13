@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.home.discover.DiscoverViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pagerSlider"
+                bindSlideAdapter="@{viewModel.adapterTopTrendingObservable}"
+                bindAutoSwitchSlide="@{true}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_250"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/pagerSlider"
+                app:tabBackground="@drawable/indicator_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+
+            <TextView
+                android:id="@+id/textTitlePopular"
+                style="@style/TextTitleBoldWhite20"
+                android:text="@string/title_popular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/indicator" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerPopularMovies"
+                style="@style/RecyclerViewHorizontal"
+                bindAdapter="@{viewModel.adapterPopularObservable}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTitlePopular"
+                tools:listitem="@layout/item_movie" />
+
+            <TextView
+                android:id="@+id/textTitleNowPlaying"
+                style="@style/TextTitleBoldWhite20"
+                android:text="@string/title_now_playing"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerPopularMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerNowPlayingMovies"
+                style="@style/RecyclerViewHorizontal"
+                bindAdapter="@{viewModel.adapterNowPlayingObservable}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTitleNowPlaying"
+                tools:listitem="@layout/item_movie" />
+
+            <TextView
+                android:id="@+id/textTitleUpComing"
+                style="@style/TextTitleBoldWhite20"
+                android:text="@string/title_upcoming"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerNowPlayingMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerUpComingMovies"
+                style="@style/RecyclerViewHorizontal"
+                bindAdapter="@{viewModel.adapterUpComingObservable}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTitleUpComing"
+                tools:listitem="@layout/item_movie" />
+
+            <TextView
+                android:id="@+id/textTitleTopRate"
+                style="@style/TextTitleBoldWhite20"
+                android:text="@string/title_top_rates"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerUpComingMovies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerTopRateMovies"
+                style="@style/RecyclerViewHorizontal"
+                bindAdapter="@{viewModel.adapterTopRateObservable}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTitleTopRate"
+                tools:listitem="@layout/item_movie" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

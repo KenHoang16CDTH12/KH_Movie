@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.sun.moviesun"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "MOVIE_DB_API_KEY", "\"${MOVIE_DB_API_KEY}\""
+        buildConfigField "String", "YOUTUBE_API_KEY", "\"${YOUTUBE_API_KEY}\""
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    configurations {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+}
+
+dependencies {
+    // App's dependencies
+    implementation "androidx.palette:palette:$rootProject.ext.androidxVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompatVersion"
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.contraintlayoutVersion"
+    implementation "com.google.guava:guava:$rootProject.guavaVersion"
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "org.jetbrains.anko:anko:$rootProject.ext.ankoVersion"
+    // Room
+    implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.rxRoomVersion"
+    // Network
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpLoggingVersion"
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    implementation "com.github.florent37:glidepalette:$rootProject.ext.glidePaletteVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    // CustomView
+    implementation "com.github.florent37:diagonallayout:$rootProject.ext.diagonalLayoutVersion"
+    // Youtube
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    // Testing
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.ext.coreTestingVersion"
+    testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.ext.mockitoKotlinVersion"
+    androidTestImplementation "androidx.test:core:$rootProject.ext.testCoreVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreVersion"
+    androidTestImplementation "android.arch.core:core-testing:$rootProject.ext.rxRoomVersion"
+}

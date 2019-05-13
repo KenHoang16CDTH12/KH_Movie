@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.viewmodel.ItemReviewViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:orientation="vertical"
+        android:onClick="@{() -> viewModel.onItemClick()}">
+
+        <TextView
+            android:id="@+id/textReviewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.review.author}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="title" />
+
+        <com.sun.moviesun.custom.textview.ExpandableTextView
+            android:id="@+id/textReviewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.review.content}"
+            app:animAlphaStart="1"
+            app:animDuration="200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textReviewTitle"
+            app:maxCollapsedLines="4">
+
+            <TextView
+                android:id="@+id/textExpandable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_7"
+                android:background="?android:attr/selectableItemBackground"
+                android:fontFamily="sans-serif-light"
+                android:lineSpacingMultiplier="1.2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_14"
+                tools:text="content" />
+
+            <ImageButton
+                android:id="@+id/imageExpandCollapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="@dimen/dp_6" />
+        </com.sun.moviesun.custom.textview.ExpandableTextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

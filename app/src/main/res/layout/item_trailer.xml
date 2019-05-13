@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.viewmodel.ItemVideoViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_100"
+        android:layout_margin="@dimen/dp_4"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> viewModel.onItemClick()}"
+        app:cardCornerRadius="@dimen/dp_4"
+        app:cardElevation="@dimen/dp_4">
+
+        <com.google.android.youtube.player.YouTubeThumbnailView
+            android:id="@+id/imageVideoCover"
+            bindThumbnailYoutube="@{viewModel.video.key}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_20"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_youtube" />
+    </androidx.cardview.widget.CardView>
+</layout>
