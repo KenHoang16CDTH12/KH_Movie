@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.viewmodel.ItemMovieViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_290"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:onClick="@{() -> viewModel.onItemClick()}"
+        tools:ignore="UnusedAttribute">
+
+        <ImageView
+            android:id="@+id/imagePoster"
+            bindImageUrl="@{viewModel.movie.posterPath}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_240"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/layoutPosterPalette"
+            bindPaletteColor="@{viewModel.movie.posterPath}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePoster" />
+
+        <TextView
+            android:id="@+id/textMovieTitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:padding="@dimen/dp_3"
+            android:text="@{viewModel.movie.title}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutPosterPalette"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/layoutPosterPalette"
+            app:layout_constraintTop_toTopOf="@+id/layoutPosterPalette" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

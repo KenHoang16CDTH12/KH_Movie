@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/actionDiscover"
+        android:icon="@drawable/ic_movie_white_24dp"
+        android:title="@string/title_discover"/>
+    <item
+        android:id="@+id/actionGenre"
+        android:icon="@drawable/ic_genre_white_24dp"
+        android:title="@string/title_genre"/>
+    <item
+        android:id="@+id/actionFavorite"
+        android:icon="@drawable/ic_favorite_white_24dp"
+        android:title="@string/title_favorite"/>
+    <item
+        android:id="@+id/actionActor"
+        android:icon="@drawable/ic_recent_actors_white_24dp"
+        android:title="@string/title_actor"/>
+</menu>

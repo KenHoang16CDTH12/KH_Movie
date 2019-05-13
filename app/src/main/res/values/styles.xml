@@ -1,0 +1,56 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="ToolbarColored" parent="AppTheme">
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+    <style name="RatingBarStyle" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorLight</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+    <style name="TextTitleBoldWhite20">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_16</item>
+        <item name="android:layout_marginTop">@dimen/dp_16</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/sp_20</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="RecyclerViewLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+    <style name="RecyclerViewHorizontal" parent="RecyclerViewLinearLayout">
+        <item name="android:layout_marginStart">@dimen/dp_16</item>
+        <item name="android:layout_marginTop">@dimen/dp_16</item>
+        <item name="android:layout_marginEnd">@dimen/dp_8</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="RecyclerViewHorizontalNoMargin" parent="RecyclerViewLinearLayout">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="RecyclerViewVertical" parent="RecyclerViewLinearLayout">
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="RecyclerViewGrid">
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+    </style>
+    <style name="RecyclerViewGrid.SpanTwo" parent="RecyclerViewGrid">
+        <item name="spanCount">2</item>
+    </style>
+    <style name="CollapsedExpandedTitleText" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+</resources>

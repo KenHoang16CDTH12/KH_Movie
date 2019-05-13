@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.detail.movie.MovieDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/textTitleTrailer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_trailers"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTrailer"
+            style="@style/RecyclerViewHorizontalNoMargin"
+            bindAdapter="@{viewModel.adapterVideoObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleTrailer"
+            tools:listitem="@layout/item_trailer" />
+
+        <TextView
+            android:id="@+id/textTitleSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_23"
+            android:text="@string/text_summary"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerTrailer" />
+
+        <TextView
+            android:id="@+id/textSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@{viewModel.movie.overview}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleSummary"
+            tools:text="Summary" />
+
+        <com.sun.moviesun.custom.layout.tagview.TagContainerLayout
+            android:id="@+id/tagsView"
+            bindTags="@{viewModel.keywordsObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_10"
+            app:container_background_color="@color/colorLight"
+            app:container_border_color="@color/colorLight"
+            app:container_enable_drag="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSummary"
+            app:tag_background_color="@color/colorAccent"
+            app:tag_border_color="@color/colorAccent"
+            app:tag_clickable="false"
+            app:tag_horizontal_padding="@dimen/dp_5"
+            app:tag_text_color="@android:color/white"
+            app:tag_theme="none"
+            app:tag_vertical_padding="@dimen/dp_6" />
+
+        <TextView
+            android:id="@+id/textTitleCast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/text_casts"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tagsView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCast"
+            style="@style/RecyclerViewHorizontalNoMargin"
+            bindAdapter="@{viewModel.adapterCastObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleCast"
+            tools:listitem="@layout/item_cast" />
+
+        <TextView
+            android:id="@+id/textTitleCrew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/text_crews"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerCast" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCrew"
+            style="@style/RecyclerViewHorizontalNoMargin"
+            bindAdapter="@{viewModel.adapterCrewObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleCrew"
+            tools:listitem="@layout/item_crew" />
+
+        <TextView
+            android:id="@+id/textTitleCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@string/text_company"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerCrew" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCompany"
+            style="@style/RecyclerViewHorizontalNoMargin"
+            bindAdapter="@{viewModel.adapterCompanyObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleCompany"
+            tools:listitem="@layout/item_company" />
+
+        <TextView
+            android:id="@+id/textTitleReviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_23"
+            android:text="@string/text_reviews"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerCompany" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerReview"
+            style="@style/RecyclerViewVertical"
+            bindAdapter="@{viewModel.adapterReviewObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleReviews"
+            tools:listitem="@layout/item_review" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

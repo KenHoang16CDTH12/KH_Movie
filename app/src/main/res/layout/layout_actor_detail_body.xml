@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sun.moviesun.ui.detail.actor.ActorDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="12"
+            android:singleLine="true"
+            android:text="@{viewModel.personDetailObservable.name}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_27"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ken Hoang" />
+
+        <TextView
+            android:id="@+id/textBirthDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="@{viewModel.personDetailObservable.birthday}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textPersonName"
+            tools:text="01/01/1998" />
+
+        <TextView
+            android:id="@+id/textTitleMovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_movies"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBirthDay" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMovies"
+            style="@style/RecyclerViewHorizontalNoMargin"
+            bindAdapter="@{viewModel.adapterMovieObservable}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleMovie"
+            tools:listitem="@layout/item_movie" />
+
+        <TextView
+            android:id="@+id/textTitleBiography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_23"
+            android:text="@string/text_biography"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerMovies" />
+
+        <TextView
+            android:id="@+id/textBiography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="@{viewModel.personDetailObservable.biography}"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitleBiography"
+            tools:text="Biography" />
+
+        <com.sun.moviesun.custom.layout.tagview.TagContainerLayout
+            android:id="@+id/tagsView"
+            bindTags="@{viewModel.personDetailObservable.alsoKnownAs}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            android:padding="@dimen/dp_10"
+            app:container_background_color="@color/colorLight"
+            app:container_border_color="@color/colorLight"
+            app:container_enable_drag="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBiography"
+            app:tag_background_color="@color/colorAccent"
+            app:tag_border_color="@color/colorAccent"
+            app:tag_clickable="false"
+            app:tag_horizontal_padding="@dimen/dp_5"
+            app:tag_text_color="@android:color/white"
+            app:tag_theme="none"
+            app:tag_vertical_padding="@dimen/dp_6" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
